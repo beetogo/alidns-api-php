@@ -10,8 +10,14 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
   $request = $_GET;
 }
 if(is_array($request)&&count($request)<1){
-  Header("Location: http://www.myxzy.com/alidns-api-php.html"); 
+  Header("Location: http://www.google.com"); 
   exit('2'); 
+}
+if(empty($request['type'])){
+    $type = "A";
+}
+else{
+    $type = addslashes($request['type']);  
 }
 if(empty($request['id'])){
   exit('2');
@@ -98,7 +104,7 @@ $search = array(
   'DomainName'    =>  $domain,
   'PageSize' => '500',
   'RRKeyWord' => $record,
-  'Type' => 'A'
+  'Type' => $type
   );
 
 //搜索record相关的记录列表
@@ -121,7 +127,7 @@ if(empty($data['DomainRecords'])){
       'Action'    =>  'AddDomainRecord',
       'DomainName'    =>  $domain,
       'RR'    =>  $record,
-      'Type'    =>  'A',
+      'Type'    =>  $type,
       'Value'    =>  $ip,
       'TTL'    =>  '600',
     );
@@ -139,7 +145,7 @@ if(empty($data['DomainRecords'])){
         'Action'    =>  'UpdateDomainRecord',
         'RecordId'    =>  $record_id,
         'RR'    =>  $record,
-        'Type'    =>  'A',
+        'Type'    =>  $type,
         'Value'    =>  $ip,
         'TTL'    =>  '600',
       ); 
