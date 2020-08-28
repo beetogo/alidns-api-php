@@ -1,4 +1,8 @@
 # alidns-api-php
 DDNS for RouterOS
+IPv6 Support:
 
-如有问题请去我的博客留言：http://www.myxzy.com/alidns-api-php.html
+Example:baidu.com,
+IPv6:http://[ip]/alidns.php?id=$id&secret=$secret&record=@&domain=baidu.com&ip=$ip&type=AAAA
+IPv4:http://[ip]/alidns.php?id=$id&secret=$secret&record=@&domain=baidu.com&ip=$ip
+
